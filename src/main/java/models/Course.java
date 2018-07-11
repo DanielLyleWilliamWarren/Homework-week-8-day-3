@@ -1,14 +1,14 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 public class Course {
      private int id;
      private String title;
      private String level;
+     private List<Student> student;
+     private List<Lesson> lesson;
 
      public Course(){}
 
@@ -42,5 +42,22 @@ public class Course {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    public List<Lesson> getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(List<Lesson> lesson) {
+        this.lesson = lesson;
+    }
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    public List<Student> getStudent() {
+        return student;
+    }
+
+    public void setStudent(List<Student> student) {
+        this.student = student;
     }
 }
