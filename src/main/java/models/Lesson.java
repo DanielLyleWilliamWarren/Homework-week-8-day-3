@@ -1,20 +1,19 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 public class Lesson {
     private int id;
     private String title;
     private int classNumber;
+    private Course course;
 
     public Lesson(){}
 
-    public Lesson(String title, int classNumber) {
+    public Lesson(String title, int classNumber, Course course) {
         this.title = title;
         this.classNumber = classNumber;
+        this.course = course;
     }
 
     @Id
@@ -42,5 +41,14 @@ public class Lesson {
 
     public void setClassNumber(int classNumber) {
         this.classNumber = classNumber;
+    }
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }
