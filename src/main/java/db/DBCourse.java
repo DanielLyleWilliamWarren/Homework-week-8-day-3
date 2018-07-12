@@ -21,6 +21,7 @@ public class DBCourse {
         try {
             Criteria cr = session.createCriteria(Student.class);
             cr.add(Restrictions.eq("course", course));
+            results = cr.list();
         } catch (HibernateException e){
             e.printStackTrace();
         } finally {
@@ -36,6 +37,7 @@ public class DBCourse {
         try {
             Criteria cr = session.createCriteria(Lesson.class);
             cr.add(Restrictions.eq("course", course));
+            results = cr.list();
         } catch (HibernateException e){
             e.printStackTrace();
         } finally {
